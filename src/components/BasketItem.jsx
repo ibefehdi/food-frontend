@@ -1,26 +1,41 @@
-import React from 'react'
-import img from "../assets/img/croissant.jpg"
-import {AiOutlinePlus , AiOutlineMinus} from 'react-icons/ai'
-function BasketItem({item}) {
-    console.log(item)
-    
-  return (
-    <div className="item__in__basket">
-            <img src={img} className = "basket__img" alt="" />
-            <div className="basket__item__details">
-                
-                <p className="basket__item__name"> {item.name}</p>
-                <div className="price__quantity">
-                    <p>{item.price}</p>
-                    <div className="quantity__signs">
-                        <AiOutlinePlus className='sign'/>
-                        <p>1</p>
-                        <AiOutlineMinus className='sign'/>
-                    </div>
-                </div>
-            </div>
-        </div>
-  )
-}
+import React,{useState} from "react";
+import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
+import { useStateValue } from "../StateProvider";
+function BasketItem({ id, title, imgSrc, price }) {
+  const [{ basket }, dispatch] = useStateValue();
+  const [quantity,setQuantity] = useState(1);
+  
 
-export default BasketItem
+  
+  const decrement = ()=>{
+    if (quantity===1){
+      dispatch({
+      type:"REMOVE_FROM_BASKET",
+      id:id
+    })
+    }
+    else{
+      setQuantity(quantity-1);
+
+    }
+    
+  }
+  return (
+    <div className="item__in__basket" key={id}>
+      <img src={imgSrc} className="basket__img" alt="" />
+      <div className="basket__item__details">
+        <p className="basket__item__name"> {title}</p>
+        <div className="price__quantity">
+          <p>${price}</p>
+          <div className="quantity__signs">
+            <AiOutlinePlus className="sign" onClick={() => setQuantity(quantity+1)} />
+            <p>{quantity}</p>
+            <AiOutlineMinus className="sign" onClick={()=>decrement()} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+  }
+
+export default BasketItem;

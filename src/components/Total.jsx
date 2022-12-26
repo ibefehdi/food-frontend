@@ -1,62 +1,33 @@
 import React from "react";
 import CurrencyFormat from "react-currency-format";
-function Total() {
+import { useStateValue } from "../StateProvider";
+import { getBasketTotal } from "../reducer";
+function Total({totalPrice}) {
+  const [{ basket }, dispatch] = useStateValue();
   return (
     <div className="subtotal">
-      <CurrencyFormat
-        renderText={(value) => (
-          <div className="total">
-            <p className="left__side__text">Subtotal</p>
-            <p className="right__side__price">$0</p>
-          </div>
-        )}
-        decimalScale={2}
-        value={0}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"$"}
-      />
+      <div className="total">
+        <p className="left__side__text">Subtotal</p>
+        <p className="right__side__price">$0</p>
+      </div>
 
-      <CurrencyFormat
-        renderText={(value) => (
-          <div className="total">
-            <p className="left__side__text">Discount Sales</p>
-            <p className="right__side__price">$0</p>
-          </div>
-        )}
-        decimalScale={2}
-        value={0}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"$"}
-      />
-      <CurrencyFormat
-        renderText={(value) => (
-          <div className="total">
-            <p className="left__side__text">Total sales tax</p>
-            <p className="right__side__price">$0</p>
-          </div>
-        )}
-        decimalScale={2}
-        value={0}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"$"}
-      />
+      <div className="total">
+        <p className="left__side__text">Discount Sales</p>
+        <p className="right__side__price">$0</p>
+      </div>
+
+      <div className="total">
+        <p className="left__side__text">Total sales tax</p>
+        <p className="right__side__price">$0</p>
+      </div>
+
       <hr className="dashed__line" />
-      <CurrencyFormat
-        renderText={(value) => (
-          <div className="final__total">
-            <p className="final__left__side">Subtotal</p>
-            <p className="final__right__side">$0</p>
-          </div>
-        )}
-        decimalScale={2}
-        value={0}
-        displayType={"text"}
-        thousandSeparator={true}
-        prefix={"$"}
-      />
+
+      <div className="final__total">
+        <p className="final__left__side">Subtotal</p>
+        <p className="final__right__side">$0</p>
+      </div>
+
       <button className="payment__button">Continue to Payment</button>
     </div>
   );

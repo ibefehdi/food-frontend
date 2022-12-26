@@ -25,7 +25,7 @@ const reducer = (state, action) => {
 
             let newBasket = [...state.basket];
 
-            if (index>=0) {
+            if (index>=-1) {
                 newBasket.splice(index, 1);
             } else {
                 console.warn(
@@ -37,7 +37,17 @@ const reducer = (state, action) => {
                 ...state,
                 basket: newBasket
             }
+        case "INCREMENT":
+            const indexI = state.basket.findIndex((basketItem)=>basketItem.id===action.id);
+            let newBasketI = [...state.basket];
+                if(indexI){
+                    newBasketI[indexI] = {
+                       ...newBasketI[indexI],
+                        quanity: newBasketI[indexI].quanity + 1
 
+                    }
+                }
+                
         default:
             return state;
     }
