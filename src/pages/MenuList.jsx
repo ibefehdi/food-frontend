@@ -16,6 +16,8 @@ function MenuList(props) {
           imgSrc={img}
           description={"Sweet croissant with topping almonds and brown sugar."}
           price={3}
+          quantity={1}
+
         />
         <MenuItem
           id={3}
@@ -23,6 +25,8 @@ function MenuList(props) {
           imgSrc={hamImg}
           description={"A Croissant with with delicious cheese and ham."}
           price={7}
+          quantity={1}
+
         />
         <MenuItem
           id={4}

@@ -13,6 +13,7 @@ function MenuItem({ id, imgSrc, title, description, price }) {
         description: description,
         price: price,
         imgSrc: imgSrc,
+        quantity:1,
       },
     });
   };

@@ -2,7 +2,7 @@ import React from "react";
 import CurrencyFormat from "react-currency-format";
 import { useStateValue } from "../StateProvider";
 import { getBasketTotal } from "../reducer";
-function Total({totalPrice}) {
+function Total() {
   const [{ basket }, dispatch] = useStateValue();
   return (
     <div className="subtotal">
@@ -25,7 +25,7 @@ function Total({totalPrice}) {
 
       <div className="final__total">
         <p className="final__left__side">Subtotal</p>
-        <p className="final__right__side">$0</p>
+        <p className="final__right__side">{"$"+ getBasketTotal(basket)}</p>
       </div>
 
       <button className="payment__button">Continue to Payment</button>

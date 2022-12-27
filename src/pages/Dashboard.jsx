@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import Basket from "./Basket";
-
 import { IoStarOutline } from "react-icons/io5";
 import { AiOutlineCoffee } from "react-icons/ai";
 import { GrIceCream } from "react-icons/gr";
@@ -13,7 +11,7 @@ import { HiOutlineFilter } from "react-icons/hi";
 import MenuList from "./MenuList";
 
 function Dashboard() {
-  const [activeLink, setActiveLink] = useState("Croissant");
+  const [activeLink, setActiveLink] = useState("Signature");
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
   };
@@ -25,9 +23,6 @@ function Dashboard() {
     { name: "Ice Cream", href: "#icecream", icon: <GrIceCream /> },
   ];
   const location = useLocation();
-  
-
-  
 
   return (
     <div className="dashboard">
@@ -64,11 +59,9 @@ function Dashboard() {
           ))}
         </div>
         <div className="menulist__dashboard">
-          <MenuList menuName={location.hash}/>
+          <MenuList menuName={location.hash} />
         </div>
       </div>
-      
-      
     </div>
   );
 }
