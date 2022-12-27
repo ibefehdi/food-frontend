@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MenuItem from "./MenuItem";
 import img from "../assets/img/croissant.jpg";
 import hamImg from "../assets/img/hamcroissant.jpg";
 import turkImg from "../assets/img/turkeycrossaint.jpg";
 import tenderImage from "../assets/img/tendercroissant.jpg";
 import chocolateImage from "../assets/img/chocolate.jpg";
+import  axios  from "axios";
 
 function MenuList(props) {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/api')
+      .then(response => {
+        setData(response.data);
+        // console.log(data.items[0].engData.title)
+        
+      });
+  }, [data]);
   if (props.menuName === "#croissant") {
     return (
       <div className="grid">
@@ -17,7 +28,6 @@ function MenuList(props) {
           description={"Sweet croissant with topping almonds and brown sugar."}
           price={3}
           quantity={1}
-
         />
         <MenuItem
           id={3}
@@ -26,7 +36,6 @@ function MenuList(props) {
           description={"A Croissant with with delicious cheese and ham."}
           price={7}
           quantity={1}
-
         />
         <MenuItem
           id={4}
@@ -51,9 +60,24 @@ function MenuList(props) {
         />
       </div>
     );
-  } else {
-    return <h1>Items in this category are currently unavailable.</h1>;
+
+    } else if(props.menuName==="#signature"){
+      return(
+        <div className="grid">
+         {data&&data.items.map(item=>
+          <MenuItem 
+          id={item._id}
+          title={item.engData.title}
+          description={item.engData.description.substring(0,80)+"..."}
+          price={1}
+          imgSrc={item.image.primaryImageID.format.origin.url}
+          
+          />
+         )}
+        </div>
+      )
+    }
   }
-}
+
 
 export default MenuList;

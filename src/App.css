@@ -209,6 +209,8 @@ main {
 .product__name {
   max-width: 300px;
   margin-bottom: 5px;
+  text-decoration: none;
+  color:#000
 }
 .product__description {
   font-size: 16px;
@@ -370,4 +372,40 @@ hr {
 .payment__button:hover {
   background-color: #9b9b9b;
   transition: all 0.2s;
+}
+.product__page__image{
+  width:300px;
+  margin-left:20%;
+  
+}
+.product__page{
+  background-color: #f8f8f8;
+  width:700px;
+  height:700px;
+  padding: 125px;
+  margin:auto;
+}
+.product__page__title{
+  color:#e3702d
+}
+.product__page__info{
+  width:100%
+}
+.product__page__price{
+  color:#e3702d;
+  font-weight:bold;
+  font-size: 30px;
+}
+.product__page__button{
+  padding:10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #e3702d;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  margin-left: 40%;
+}
+.product__page__button:hover{
+  background-color: #9b9b9b;
 }
